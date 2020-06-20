@@ -11,9 +11,9 @@ do :
     echo "Enter the number of files in the current directory: "
     read user_input
     # check that the  input is number
-    if ! [[ "$user_input" =~ ^[0-9]+$ ]]
+    if ! [[ "$user_input" =~ ^[2-9]+$ ]]
     then
-        echo "Please Enter 0 or a positive number"
+        echo "Please Enter a positive number"
     else
         # if it is a correct answer print Congrats
         if [[ $user_input -eq $number_of_files ]]
@@ -31,3 +31,11 @@ do :
     fi
     
 done
+
+
+PATH=$PATH:$PWD; mkdir -p $HOME/GG_TEST/; cd $HOME/GG_TEST/
+make_dirs () { mkdir -p $PWD/{normal,.hidden}{," spaced"," double spaced"}"_${NAME_PREFIX}dir"/; } && make_dirs
+make_files () { touch $PWD/{normal,.hidden}{," spaced"," double spaced"}"_file"; } && make_files
+make_symlinks () { for lnknm in $PWD/{normal,.hidden}{," spaced"," double spaced"}"_link"; do ln -s $PWD/normal_file "$lnknm"; done } && make_symlinks
+NAME_PREFIX=sub && for tdir in normal .hidden; do { cd "${tdir}_dir"; make_dirs; make_files; make_symlinks; cd ..; } done
+touch "$HOME/GG_TEST/single file name with more than two white characters"
