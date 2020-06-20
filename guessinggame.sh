@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Find the number of files in the current directory 
-number_of_files=$(ls | wc -l)
+number_of_files=$(ls -a | wc -l)
 
 correct_answer=0
 # while true 
@@ -11,9 +11,9 @@ do :
     echo "Enter the number of files in the current directory: "
     read user_input
     # check that the  input is number
-    if ! [[ "$user_input" =~ ^[+-]?[0-9]+$ ]]
+    if ! [[ "$user_input" =~ ^[0-9]+$ ]]
     then
-        echo "Please Enter an integer"
+        echo "Please Enter 0 or a positive number"
     else
         # if it is a correct answer print Congrats
         if [[ $user_input -eq $number_of_files ]]
